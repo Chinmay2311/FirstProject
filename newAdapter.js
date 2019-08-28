@@ -7,7 +7,7 @@ class ArrayAdapter{
                users.push(data);
                resolve(data);
            }else{
-               reject("Data is unavailable");
+               reject("Couldn't find data");
            }
        })
    }
@@ -16,7 +16,7 @@ class ArrayAdapter{
            if(users){
                resolve(users);
            }else{
-               reject("Data is unavailable");
+               reject("Couldn't find data");
            }
        })
    }
@@ -24,18 +24,18 @@ class ArrayAdapter{
        return new Promise((resolve,reject)=>{
            let user = "";
            let index = "";
-           users.forEach((data,ind)=>{
+           users.forEach((data,Userind)=>{
                if(id==data.id){
                    user=data;
-                   index=ind;
+                   index=Userind;
                }
            })
            if(!user){
-               reject("User not available");
+               reject("User not found");
            }
-           Object.keys(obj).forEach((val)=>{
-               if(Object.keys(user).includes(val)){
-                   users[index][val]=obj[val];
+           Object.keys(obj).forEach((value)=>{
+               if(Object.keys(user).includes(value)){
+                   users[index][value]=obj[value];
                }
            })
            resolve(users[index]);
@@ -59,9 +59,6 @@ class User{
 }
 class Schema{
    constructor(id,name){
-       if(!id || !name){
-           throw new Error('id and name is required');
-       }
        this.id=id;
        this.name=name;
    }
