@@ -7,6 +7,14 @@ class ArrayAdapter{
        console.log(users);
    }
    update(id,obj){
+        let user1 = "";
+        let ind = "";
+       users.forEach((data,index)=>{
+           if(id==data.id){
+             user1 = data;
+             ind = index
+           }
+       })
        const user = users.find(el => id === el.id);
        if(!user){
            return 'User not found';
@@ -21,7 +29,7 @@ class User{
        this.schema =schema;
    }
    display(){
-       this.instance.display()
+       return this.instance.display()
    }
    save(id,name){
        this.instance.save(new this.schema(id,name));
